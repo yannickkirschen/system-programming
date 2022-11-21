@@ -26,3 +26,10 @@ that directory. So compile them by using:
 ```sh
 nasm src/FILE.ASM -o mount/FILE.exe
 ```
+
+## Project Structure
+
+- `assembly-instructions.md`: Documentation of the assembly instructions we use in the lecture.
+- `debug-instructions.md`: List of the instructions `mount/debug.exe` provides.
+- `src/`: The source files.
+- `mount/`: Mount path in DOSBox. Place your binaries here.
