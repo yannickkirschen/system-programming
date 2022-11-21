@@ -17,3 +17,12 @@ the file and copy the absolute path tp `mount/` in the `autoexec` section:
 mount x: "/path/to/mount"
 x:
 ```
+
+## Compile Code
+
+If you have mounted `mount/` in Dosbox, you want your binaries to be placed in
+that directory. So compile them by using:
+
+```sh
+nasm src/FILE.ASM -o mount/FILE.exe
+```
