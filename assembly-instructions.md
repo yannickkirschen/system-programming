@@ -130,7 +130,7 @@ There are several instructions for shifting and rotating values.
 | `SHL` | Shift left             | Shifts all bits to the left by a given number and fills up with zeros from the right.         | `SHL BL, 3` |
 | `ROR` | Rotate right           | Shifts all bits to the right by a given number and fills up with the same bits from the left. | `ROR BL, 3` |
 | `ROL` | Rotate left            | Shifts all bits to the left by a given number and fills up with the same bits from the right. | `ROR BL, 3` |
-| `RCL` | Rotate with carry left | TODO | TODO |
+| `RCL` | Rotate with carry left | Shifts all bits to the left and sets the carry flag to 1 if the shifted bit was a 1.          | `RCL BL, 1` |
 
 ## Loops
 
