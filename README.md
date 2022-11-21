@@ -4,11 +4,11 @@ These is the source code from the lecture "System Programming" at DHBW Mannheim.
 
 ## Prerequisites
 
-You have to install [Dosbox](https://www.dosbox.com) and [NASM](https://nasm.us).
+You have to install [DOSBox](https://www.dosbox.com) and [NASM](https://nasm.us).
 In case you use macOS, you can install NASM via brew: `brew install nasm`.
 
-You need to mount the `mount/` directory in Dosbox. To do so, open the
-configuration file of your Dosbox installation. On macOS, it is
+You need to mount the `mount/` directory in DOSBox. To do so, open the
+configuration file of your DOSBox installation. On macOS, it is
 `~/Library/Preferences/DOSBox\ 0.74-3-3\ Preferences`. Scroll to the bottom of
 the file and copy the absolute path tp `mount/` in the `autoexec` section:
 
@@ -20,7 +20,7 @@ x:
 
 ## Compile Code
 
-If you have mounted `mount/` in Dosbox, you want your binaries to be placed in
+If you have mounted `mount/` in DOSBox, you want your binaries to be placed in
 that directory. So compile them by using:
 
 ```sh
