@@ -12,3 +12,4 @@ This is a list of all programs in the order we had them in the lecture.
 8. `REGMACRO.ASM`
 9. `LOOP.ASM`
 10. `PRINTBIN.ASM`
+11. `FLAGS.ASM`

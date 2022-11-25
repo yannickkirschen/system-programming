@@ -169,3 +169,18 @@ used with `PUSH <REGISTER>` and `POP <TARGET REGISTER>`.
 
 The stack for flags can be used with `PUSHF` and `POPF`. Both instructions apply
 for all flags at once.
+
+## Flags
+
+Flags are stored in their own register. It has a width of 16 bit and every bit
+(=flag) reflects a specific status after an operation of the processor. A flag
+is set when having a value of 1. It is not set when having a value of 0.
+
+The following table lists the relevant flags we use in this lecture.
+
+| Order | Name   | Description                                       | Operation              |
+|-------|--------|---------------------------------------------------|------------------------|
+| 0     | Carry  | Set, if an overflow occurred.                     | `JC`, `JNC`            |
+| 2     | Parity | Set, if number of 1s in the lower 8 bits is even. | `JPE`, `JNP`, `JPO`    |
+| 6     | Zero   | Set, if the result of an operation is 0.          | `JZ`/`JE`, `JNE`/`JNZ` |
+| 7     | Sign   | Set, if the result of an operation is negative.   | `JS`, `JNS`            |
