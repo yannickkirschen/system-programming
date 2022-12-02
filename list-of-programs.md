@@ -1,6 +1,6 @@
 # List of Programs
 
-This is a list of all programs in the order we had them in the lecture.
+This is a list of all programs in the order we covered them in the lecture.
 
 1. `PRNTINPT.ASM`
 2. `NMBRPRNT.ASM`
@@ -13,3 +13,4 @@ This is a list of all programs in the order we had them in the lecture.
 9. `LOOP.ASM`
 10. `PRINTBIN.ASM`
 11. `FLAGS.ASM`
+12. `STRNGINP.ASM`

@@ -76,6 +76,14 @@ MOV AH, 0x2 ; Use function for output
 INT 0x21    ; Trigger output
 ```
 
+For printing a string (as described in [Strings](#strings)), use:
+
+```asm
+MOV DX, <STRING_NAME> ; Move reference to register DX for printing
+MOV AH, 9             ; Use function for printing a string to the screen
+INT 0x21              ; Print string
+```
+
 ## Variables
 
 Variables can be declared either as 8 bit or 16 bit. The declaration must be
@@ -116,9 +124,50 @@ Strings can be declared like so:
 
 The declaration must be placed at the end of the program. The last three options
 define how the end of the string should look like. In this case, we want a
-carriage return (ASCII 10 and 13) and a string end symbol $.
+carriage return (ASCII 10 and 13) and a string end symbol `$`.
 
 A line feed can be declared as `LINEFEED DB 10, 13, "$"`.
+
+Instead of using the methods described in
+[Output of Characters](#output-of-characters) to print a string, you can use
+`LODSB` (*Load String Byte*):
+
+```asm
+MOV SI, <STRING_NAME> ; Load string offset to SI
+
+OUTPUT:
+    LODSB             ; Loads character to AL and increment SI
+    MOV DL, AL        ; Load next character
+    CMP DL, "$"       ; Check if string end is reached
+    JE END            ; Jump to end of end of string is reached
+
+    MOV AH, 2         ; Use function for output on screen
+    INT 0x21          ; Execute output
+    JMP OUTPUT        ; Loop
+
+END:
+    ; Do something here
+```
+
+Instead of using the methods described in [Keyboard Input](#keyboard-input) to
+read a string from keyboard input, you can use `STOSB (*Store String Byte*):
+
+```asm
+MOV DI, <STRING> ; Load string offset to DI (data will be written to that string)
+
+INPUT:
+    MOV AH, 1    ; Use function for keyboard input with output of the character
+    INT 0x21     ; Execute input
+    STOSB        ; Stores AL in [DI] (current character)
+    CMP AL, 13   ; Input has been written to AL. Check if <ENTER> has been pressed
+    JNE INPUT    ; Loop if <ENTER> has not been pressed
+
+    MOV AL, "$"  ; Override last input (<ENTER>) by string end character
+    STOSB        ; Stores AL in [DI] (current character)
+
+END:
+    ; Do something here
+```
 
 ## Shifting and Rotating
 
