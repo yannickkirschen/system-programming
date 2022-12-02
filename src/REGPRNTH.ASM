@@ -25,7 +25,7 @@ ADD DL, 7		     ; Otherwise add 7
 
 PRINT:
     MOV AH, 2        ; Use function for output on screen
-    INT 21H          ; Execute output (character from DL)
+    INT 0x21         ; Execute output (character from DL)
 
     POP BX           ; Restore register from stack
     AND BL, 0x0F     ; Logic null left digit (alternative: 00001111B)
