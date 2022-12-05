@@ -10,5 +10,8 @@
         80,
         120
     ],
-    "cSpell.words": []
+    "cSpell.words": [],
+    "cSpell.enableFiletypes": [
+        "asm-intel-x86-generic"
+    ]
 }
