@@ -27,7 +27,7 @@ INT 0x21
 MOV DL, [ARR + 3]
 INT 0x21
 
-MOV AH, 0x4C         ; Use function for quiting the program
+MOV AH, 0x4C         ; Use function for quitting the program
 INT 0x21             ; Quit
 
 ARR: TIMES 5 DB 0    ; Declare Array with length of 5

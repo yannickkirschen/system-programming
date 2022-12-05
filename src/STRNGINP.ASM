@@ -6,14 +6,14 @@
 ORG  0x100
 BITS 16
 
-%macro PRINTSTRING 1
+%macro PRINT_STRING 1
     MOV DX, %1
     MOV AH, 9
     INT 0x21
 %endmacro
 
-PRINTSTRING PROMPT
-PRINTSTRING LINE_FEED
+PRINT_STRING PROMPT
+PRINT_STRING LINE_FEED
 
 MOV CX, 15                  ; Loop 15 times
 MOV DI, TARGET              ; Load string offset to DI (data will be written to that target string)
@@ -34,12 +34,12 @@ MAIN_LOOP:
 PRINT_LENGTH:
     MOV BYTE[DI], '$'       ; We have finished reading the string and add the end character to the target string
 
-    PRINTSTRING LINE_FEED
-    PRINTSTRING LINE_FEED
-    PRINTSTRING OUTPUT_TEXT
-    PRINTSTRING TARGET
-    PRINTSTRING LINE_FEED
-    PRINTSTRING LENGTH_TEXT
+    PRINT_STRING LINE_FEED
+    PRINT_STRING LINE_FEED
+    PRINT_STRING OUTPUT_TEXT
+    PRINT_STRING TARGET
+    PRINT_STRING LINE_FEED
+    PRINT_STRING LENGTH_TEXT
 
     MOV DL, BYTE[LENGTH]    ; Move length to DL for printing on the screen
     ADD DL, 0x30            ; Mask length ti get ASCII character
@@ -52,7 +52,7 @@ OUTPUT:
     INT 0x21                ; Execute output
     MOV BYTE[LENGTH], 0     ; Set length to 0
 
-MOV AH, 0x4C                ; Use function for quiting the program
+MOV AH, 0x4C                ; Use function for quitting the program
 INT 0x21                    ; Quit
 
 LENGTH      DB 0

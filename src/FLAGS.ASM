@@ -5,7 +5,7 @@
 ORG  0X100
 BITS 16
 
-%macro PUSHALL 0
+%macro PUSH_ALL 0
     PUSHF
 
     PUSH AX
@@ -14,7 +14,7 @@ BITS 16
     PUSH DX
 %endmacro
 
-%macro POPALL 0
+%macro POP_ALL 0
     POP DX
     POP CX
     POP BX
@@ -23,7 +23,7 @@ BITS 16
     POPF
 %endmacro
 
-%macro PRINTSTRING 1
+%macro PRINT_STRING 1
     MOV DX, %1
     MOV AH, 9
     INT 0x21
@@ -37,61 +37,61 @@ MOV BX, 9
 SUB AX, BX
 
 CARRY_CHECK:
-    PUSHALL                             ; Save all registers, including flags
+    PUSH_ALL                            ; Save all registers, including flags
     JC CARRY_SET                        ; Jump if carry is set
 
-    PRINTSTRING CARRY_NO_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING CARRY_NO_STRING
+    PRINT_STRING LINE_FEED_STRING
 
     JMP PARITY_CHECK
 
 CARRY_SET:
-    PRINTSTRING CARRY_YES_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING CARRY_YES_STRING
+    PRINT_STRING LINE_FEED_STRING
 
 PARITY_CHECK:
-    POPALL                              ; Restore all registers including flags
-    PUSHALL                             ; Save all registers, including flags
+    POP_ALL                             ; Restore all registers including flags
+    PUSH_ALL                            ; Save all registers, including flags
 
     JPE PARITY_EQUAL                    ; Jump if parity is even
-    PRINTSTRING PARITY_ODD_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING PARITY_ODD_STRING
+    PRINT_STRING LINE_FEED_STRING
 
     JMP ZERO_CHECK
 
 PARITY_EQUAL:
-    PRINTSTRING PARITY_EQUAL_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING PARITY_EQUAL_STRING
+    PRINT_STRING LINE_FEED_STRING
 
 ZERO_CHECK:
-    POPALL                              ; Restore all registers including flags
-    PUSHALL                             ; Save all registers, including flags
+    POP_ALL                             ; Restore all registers including flags
+    PUSH_ALL                            ; Save all registers, including flags
 
     JZ ZERO_NULL                        ; Jump if zero is set
-    PRINTSTRING ZERO_NO_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING ZERO_NO_STRING
+    PRINT_STRING LINE_FEED_STRING
 
     JMP SIGN_CHECK
 
 ZERO_NULL:
-    PRINTSTRING ZERO_YES_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING ZERO_YES_STRING
+    PRINT_STRING LINE_FEED_STRING
 
 SIGN_CHECK:
-    POPALL                              ; Restore all registers including flags
+    POP_ALL                             ; Restore all registers including flags
 
     JS SIGN_NEGATIVE                    ; Jump if sign is set (result is negative)
-    PRINTSTRING SIGN_POS_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING SIGN_POS_STRING
+    PRINT_STRING LINE_FEED_STRING
 
     JMP END
 
 SIGN_NEGATIVE:
-    PRINTSTRING SIGN_NEG_STRING
-    PRINTSTRING LINE_FEED_STRING
+    PRINT_STRING SIGN_NEG_STRING
+    PRINT_STRING LINE_FEED_STRING
 
 END:
-    MOV AH, 0X4C                        ; Use function for quiting the program
+    MOV AH, 0X4C                        ; Use function for quitting the program
     INT 0X21                            ; Quit
 
 CARRY_YES_STRING    DB "Carry is set$"

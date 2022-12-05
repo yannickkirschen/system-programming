@@ -10,7 +10,13 @@
         80,
         120
     ],
-    "cSpell.words": [],
+    "cSpell.words": [
+        "endmacro",
+        "POPF",
+        "PUSHF",
+        "STOSB",
+        "XCHG"
+    ],
     "cSpell.enableFiletypes": [
         "asm-intel-x86-generic"
     ]

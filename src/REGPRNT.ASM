@@ -5,13 +5,13 @@
 ORG  0x100
 BITS 16
 
-%macro PRINTSTRING 1
+%macro PRINT_STRING 1
     MOV DX, %1
     MOV AH, 9
     INT 0x21
 %endmacro
 
-PRINTSTRING MESSAGE
+PRINT_STRING MESSAGE
 
 MOV BL, 0x75     ; Arbitrary content in BL
 PUSH BX          ; Push BX on the stack
@@ -29,7 +29,7 @@ MOV DL, BL       ; Put content of BL into register for output
 ADD DL, 0x30     ; Convert digit 5 to ASCII character 5
 INT 0x21         ; Execute output (this will print the '5' on the screen, function 2 still in AH)
 
-MOV AH, 0x4C     ; Use function for quiting the program
+MOV AH, 0x4C     ; Use function for quitting the program
 INT 0x21         ; Quit
 
 MESSAGE DB "Output 8-Bit-Register (BL), Digits 0 to 9", 10, 13, "$"

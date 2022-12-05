@@ -18,5 +18,5 @@ WRITE:
     JMP WRITE       ; Write again
 
 END:
-    MOV AH, 0x4C    ; Use function for quiting the program
+    MOV AH, 0x4C    ; Use function for quitting the program
     INT 0x21        ; Quit

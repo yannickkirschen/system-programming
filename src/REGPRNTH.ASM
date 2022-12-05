@@ -5,13 +5,13 @@
 ORG  0x100
 BITS 16
 
-%macro PRINTSTRING 1
+%macro PRINT_STRING 1
     MOV DX, %1
     MOV AH, 9
     INT 0x21
 %endmacro
 
-PRINTSTRING MESSAGE
+PRINT_STRING MESSAGE
 
 MOV BL, 0x7E         ; Arbitrary content
 PUSH BX              ; Push BX on the stack
@@ -38,7 +38,7 @@ PRINT:
 END:
     INT 21H	         ; Execute output
 
-MOV AH, 0x4C     ; Use function for quiting the program
+MOV AH, 0x4C     ; Use function for quitting the program
 INT 0x21         ; Quit
 
 MESSAGE DB "Output 8-Bit-Register (BL), Hex", 10, 13, "$"

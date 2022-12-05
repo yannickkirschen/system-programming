@@ -14,5 +14,5 @@ MARKER:
     INC DL         ; Next character
     LOOP MARKER    ; Loop until CX = 0
 
-MOV AH, 0x4C       ; Use function for quiting the program
+MOV AH, 0x4C       ; Use function for quitting the program
 INT 0x21           ; Quit

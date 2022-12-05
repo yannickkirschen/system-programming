@@ -5,7 +5,7 @@
 ORG  0x100
 BITS 16
 
-%macro PRINTSTRING 1
+%macro PRINT_STRING 1
     MOV DX, %1
     MOV AH, 9
     INT 0x21
@@ -37,7 +37,7 @@ BITS 16
         INT 0x21         ; Execute output
 %endmacro
 
-PRINTSTRING MESSAGE
+PRINT_STRING MESSAGE
 
 MOV BX, 0x7E3A           ; Arbitrary content
 XCHG BL, BH              ; Swap BL and BH cause high should be printed first
@@ -45,7 +45,7 @@ REGISTER_PRINT BX        ; Print BX (high)
 XCHG BL, BH              ; Swap again
 REGISTER_PRINT BX        ; Print BX (low)
 
-MOV AH, 0x4C             ; Use function for quiting the program
+MOV AH, 0x4C             ; Use function for quitting the program
 INT 0x21                 ; Quit
 
 MESSAGE DB "Output 16-Bit-Register (BX), Hex", 10, 13, "$"

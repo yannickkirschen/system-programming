@@ -1,7 +1,7 @@
 ; File: PRNTINPT.ASM
 ;
 ; Lets the user type an arbitrary number of characters that get written to the
-; screen immediately. When the user presses <ESC>, the programm quits.
+; screen immediately. When the user presses <ESC>, the program quits.
 
 ORG  0x100
 BITS 16
@@ -20,5 +20,5 @@ INPUT:
     JMP INPUT      ; Loop back to input
 
 END:
-    MOV AH, 0x4C   ; Use function for quiting the program
+    MOV AH, 0x4C   ; Use function for quitting the program
     INT 0x21       ; Quit
