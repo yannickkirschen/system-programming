@@ -14,3 +14,4 @@ This is a list of all programs in the order we covered them in the lecture.
 10. `PRINTBIN.ASM`
 11. `FLAGS.ASM`
 12. `STRNGINP.ASM`
+13. `STRNGCPY.ASM`
