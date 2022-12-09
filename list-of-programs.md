@@ -15,3 +15,4 @@ This is a list of all programs in the order we covered them in the lecture.
 11. `FLAGS.ASM`
 12. `STRNGINP.ASM`
 13. `STRNGCPY.ASM`
+14. `STRNGCMP.ASM`
