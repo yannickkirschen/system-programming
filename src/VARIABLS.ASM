@@ -9,7 +9,7 @@ BITS 16
 MOV BL, 'Y'
 MOV BYTE[MY_VAR], BL    ; Copy value to variable
 
-MOV DL, BL              ; Put content of variable into register for output
+MOV DL, BYTE[MY_VAR]    ; Put content of variable into register for output
 MOV AH, 2               ; Use function for output on screen
 INT 21H                 ; Execute output
 
