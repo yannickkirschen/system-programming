@@ -2,7 +2,7 @@
 ;
 ; Waits for the input of two hex digits and stores them in BL.
 
-ORG  0X100
+ORG  0x100
 BITS 16
 
 FIRST:

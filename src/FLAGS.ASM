@@ -2,7 +2,7 @@
 ;
 ; Demonstrates how flags work. Executes a subtraction and prints all registers.
 
-ORG  0X100
+ORG  0x100
 BITS 16
 
 %macro PUSH_ALL 0
