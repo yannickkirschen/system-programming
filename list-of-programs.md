@@ -17,3 +17,4 @@ This is a list of all programs in the order we covered them in the lecture.
 13. `STRNGCPY.ASM`
 14. `STRNGCMP.ASM`
 15. `PASSWORD.ASM`
+16. `HEXINP.ASM` (preparation for the exam)
