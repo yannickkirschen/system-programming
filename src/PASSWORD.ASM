@@ -90,7 +90,7 @@ INPUT_LOOP:
     INT 0x21                         ; Execute input
 
     CMP AL, 13                       ; Input has been written to AL. Check if <ENTER> has been pressed
-    JE CHECK_INPUT                   ; CHeck input if <ENTER> has been pressed
+    JE CHECK_INPUT                   ; Check input if <ENTER> has been pressed
 
     PUSH AX                          ;
     MOV DL, '*'                      ; We want to write an asterisk instead of the input character
