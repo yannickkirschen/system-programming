@@ -32,21 +32,33 @@ Here is a list and purpose of all four registers:
 | `CX` | *Counter*: Used as counter in loops.           |
 | `DX` | Used for addressing as well.                   |
 
+### Index Registers
+
+There are two index registers: `SI` and `DI`. They are used for working with
+strings. Unless normal registers, index registers cannot be divided. Usually,
+index registers are used for working with strings. Here is a list and purpose of
+both registers:
+
+| Name | Description                                                           |
+|------|-----------------------------------------------------------------------|
+| `DI` | *Destination Index*: destination of a character in string operations. |
+| `SI` | *Source Index*: source of a character in string operations.           |
+
 ## Functions
 
 Functions get written into `AH`:
 
 `MOV AH, <NUMBER>`
 
-and triggered by using the interrupt `21H`:
+and triggered by using the interrupt `0x21`:
 
-`INT 21H`
+`INT 0x21`
 
 | Number | Description                                                                                   |
 |--------|-----------------------------------------------------------------------------------------------|
-| `1`    | Keyboard input *with* output of the character (see [Keyboard Input](#keyboard-input)).        |
-| `8`    | Keyboard input *without* output of the character (see [Keyboard Input](#keyboard-input)).     |
-| `2`    | Print a single character onto the screen (see [Output of characters](#output-of-characters)). |
+| `0x1`  | Keyboard input *with* output of the character (see [Keyboard Input](#keyboard-input)).        |
+| `0x8`  | Keyboard input *without* output of the character (see [Keyboard Input](#keyboard-input)).     |
+| `0x2`  | Print a single character onto the screen (see [Output of characters](#output-of-characters)). |
 | `0x4C` | Quit the program.                                                                             |
 | `0x9C` | Print a string onto the screen (see [Strings](#strings)).                                     |
 
@@ -72,8 +84,9 @@ To print a character to the screen, it needs to be written to register `DL` firs
 After that, it can be printed:
 
 ```asm
-MOV AH, 0x2 ; Use function for output
-INT 0x21    ; Trigger output
+MOV DL, <VALUE> ; Character to be printed
+MOV AH, 0x2     ; Use function for output
+INT 0x21        ; Trigger output
 ```
 
 For printing a string (as described in [Strings](#strings)), use:
@@ -87,7 +100,7 @@ INT 0x21              ; Print string
 ## Variables
 
 Variables can be declared either as 8 bit or 16 bit. The declaration must be
-placed at the end of the program.
+placed **at the end of the program**.
 
 - 8-bit: `<VARIABLE> DB <VALUE>` (*define byte*)
 - 16-bit: `<VARIABLE> DW <VALUE>` (*define word*)
@@ -188,18 +201,17 @@ The `LOOP` instruction uses `CX` as a loop variable. Each loop decreases `CX` by
 
 ```asm
 MOV CX, 10         ; Number of loops
-MOV DL, 1          ; Start with 1
 
 MARKER:
-    ; Do something with DL
+    ; Do something
     LOOP MARKER    ; Loop until CX = 0
 ```
 
 ## Subroutines
 
-Subroutines are like jumps, but with the option to return to the caller. So
-they behave like functions/methods in other programming lectures. An example
-is given below:
+Subroutines are like jumps, but with the option to return the program flow to
+the caller. So they behave like functions/methods in other programming
+languages. An example is given below:
 
 ```asm
 ; Do something before calling the routine
@@ -210,6 +222,9 @@ MY_ROUTINE:
     ; Do something here
     RET    ; Return to the caller
 ```
+
+If you need to return a value to the caller, the routine has to store it in a
+register. The caller can then read the value from that register.
 
 ## Stacks
 

@@ -12,6 +12,7 @@
     ],
     "cSpell.words": [
         "endmacro",
+        "LODSB",
         "POPF",
         "PUSHF",
         "STOSB",
