@@ -229,7 +229,17 @@ register. The caller can then read the value from that register.
 ## Stacks
 
 There is a stack both for registers and flags. The stack for registers can be
-used with `PUSH <REGISTER>` and `POP <TARGET REGISTER>`.
+used with `PUSH <REGISTER>` and `POP <TARGET REGISTER>`. When pushing to a
+stack, lower and higher byte will be switched. So
+
+```asm
+MOV AX, 2465
+PUSH AX
+```
+
+results in a stack with the following content: `6524`. When popping an element
+from the stack, the lower and higher byte will be switched again, resulting in
+the original value.
 
 The stack for flags can be used with `PUSHF` and `POPF`. Both instructions apply
 for all flags at once.
