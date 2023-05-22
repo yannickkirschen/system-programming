@@ -6,7 +6,7 @@ ORG  0x100
 BITS 16
 
 MOV CX, 5         ; Number of loops
-MOV DL, 'Z'       ; Start with letter 'A'
+MOV DL, 'Z'       ; Start with letter 'Z'
 MOV AH, 2         ; Use function for output on screen
 
 MARKER:
