@@ -8,9 +8,9 @@ BITS 16
 FIRST:
     MOV AH, 0x1  ; Function for keyboard input (with output of character)
     INT 0x21     ; Trigger first input; character is in AL
-    CMP AL, 0x39 ; Check if AL is >= 9 (decimal)
-    JLE SECOND   ; AL is < 9, so we have read a decimal number
-    SUB AL, 7    ; AL is >= 9, so we have read a non-decimal number, so we make it one
+    CMP AL, 0x39 ; Check if AL is >= 0x39 which means 9 (decimal)
+    JLE SECOND   ; AL is < 0x39, so we have read a decimal number (at least we assume this)
+    SUB AL, 7    ; AL is >= 0x39, so we have read a non-decimal number, so we make it one (there are seven characters between 9 and A)
 
 SECOND:
     SUB AL, 0x30 ; To get the decimal number
