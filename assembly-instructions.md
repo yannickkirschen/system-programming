@@ -59,8 +59,8 @@ and triggered by using the interrupt `0x21`:
 | `0x1`  | Keyboard input *with* output of the character (see [Keyboard Input](#keyboard-input)).        |
 | `0x8`  | Keyboard input *without* output of the character (see [Keyboard Input](#keyboard-input)).     |
 | `0x2`  | Print a single character onto the screen (see [Output of characters](#output-of-characters)). |
+| `0x9`  | Print a string onto the screen (see [Strings](#strings)).                                     |
 | `0x4C` | Quit the program.                                                                             |
-| `0x9C` | Print a string onto the screen (see [Strings](#strings)).                                     |
 
 ## Keyboard Input
 
